@@ -1,0 +1,111 @@
+@media (orientation: landscape) {
+    .wrapper {
+        flex-direction: row;
+    }
+    .place_from_top_menu {
+        flex-direction: column;
+        width: 15%;
+        height: 100%;
+    }
+    .button_add_circle, .button_remove_circle, .button_start_game {
+        margin: 10px 0;
+    }
+}
+@media screen and (max-width: 570px ), (max-height: 750px) {
+    .place_from_circle {/* Ряды с кругами */
+        margin:  10px 0;
+    }
+    .circle_main {/*Сюда вставляются круги(для каждого отдельного круга). Нужно для жёсткой фиксации положения*/
+        width: 80px;
+        height: 80px;
+
+        margin: 0 10px;
+    
+        /* background: rgb(78, 93, 109); */
+    }
+    .circle {/*Сами круги*/
+        border-bottom: 5px solid rgba(0, 0, 0, 0.2);
+        box-shadow: 0 10px 15px 1px rgba(70, 70, 70, 0.3);
+    }
+    .color_search {
+        width: 50px;
+        height: 50px;
+    }
+    @keyframes circleStay {/*Анимация состояния покоя круга*/
+        0% {
+            height: 80px;
+            transform: translateY(0px);
+        }
+        50% {
+            height: 70px;
+            transform: translateY(5px);
+        }
+        100% {
+            height: 80px;
+            transform: translateY(0px);
+        }
+    }
+    @keyframes circleWiggleLR {/*Анимация круга сжатие с покачиванием*/
+        0% {
+            height: 80px;
+        }
+        25% {
+            height: 70px;
+        }
+        50% {
+            height: 100px;
+        }
+        75% {
+            height: 70px;
+        }
+        100% {
+            height: 80px;
+        }
+    }
+    @keyframes circleWiggleAmorph {/*Анимация круга Аморфное изменение*/
+        0% {
+        }
+        25% {
+            height: 105px;
+            transform: translateY(-12px);
+        }
+        50% {
+        }
+        75% {
+        }
+        100% {
+        }
+    }
+    @keyframes circleMinAmorph {/*Анимация круга сплющивание изменение*/
+        0% {
+            width: 80px;
+            height: 80px;
+            transform: translateY(0px);
+        }
+        10% {
+            width: 100px;
+            height: 30px;
+            transform: translateY(23px);
+        }
+        25% {
+            width: 100px;
+            height: 30px;
+            transform: translateY(23px);
+        }
+        50% {
+            width: 100px;
+            height: 30px;
+            transform: translateY(23px);
+        }
+        75% {
+            width: 100px;
+            height: 30px;
+            transform: translateY(23px);
+        }
+        100% {
+            width: 80px;
+            height: 80px;
+            transform: translateY(0px);
+        }
+    }
+}

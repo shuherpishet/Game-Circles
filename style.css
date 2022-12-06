@@ -1,0 +1,506 @@
+.colors {/* Список цветов */
+    background: rgb(236, 229, 27);
+    background: rgb(109, 223, 64);
+    background: rgb(248, 85, 26);
+    background: rgb(127, 99, 190);
+    background: rgb(0, 228, 209);
+    background: rgb(50, 120, 204);
+    background: rgb(243, 140, 22);
+    background: rgb(255, 115, 150);
+    background: rgb(37,42,52);
+    background: rgb(36, 109, 108);
+    background: rgb(124, 89, 8);
+    background: rgb(134, 17, 86);
+    background: rgb(121, 121, 121);
+}
+* {/* Убирает синюю рамку при клике на блок на мобильных устройствах */
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+
+    /*Запрет выделения текста*/
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100vh;
+    background: #55ddff; /* Старые браузеры */
+    background: radial-gradient(#bddfe7, #6eb6d3);
+    /* background: rgb(221, 228, 230); */
+}
+
+.overlay {/* поверх всех окон. нужен для того что бы игрок не мог кликнуть по экрану, когда идёт сменацветов */
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    height: 100%;
+    width: 100%;
+
+    /* background: rgb(21, 172, 79); */
+    z-index: 99;
+}
+.place_from_top_menu {/* Верхняя шапка меню */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 160px;
+
+    padding: 0;
+
+    /* background: rgb(52, 102, 71); */
+}
+
+.place_from_main_place {/* Главнй блок куда вставляются строки с кругами */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 0;
+
+    /* background: #55ddff; Старые браузеры */
+    /* background: radial-gradient(#bddfe7, #6eb6d3); */
+}
+
+.place_from_color_text{/* блок с надписью "найди такой цвет" */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    width: 100%;
+
+    top: 170px;
+
+    color:ivory;
+    font-weight: bold;
+    font-size: 1.5em;
+
+    /* background: rgb(198, 221, 134); */
+}
+
+.color_search{/* блок с цветом который искать */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+
+    margin-left: 10px;
+    border-radius: 100%;
+
+    background: rgb(198, 221, 134);
+}
+.place_from_circle {/* строка с кругами */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin:  15px 0;
+
+    /* background: rgb(172, 219, 233); */
+}
+
+.circle_main {/*Сюда вставляются круги(для каждого отдельного круга). Нужно для жёсткой фиксации положения*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+
+    margin: 0 15px;
+
+    /* background: rgb(78, 93, 109); */
+}
+
+.circle {/*Сами круги*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    border-bottom: 10px solid rgba(0, 0, 0, 0.2);
+    border-radius: 100%;
+    cursor: pointer;
+    box-shadow: 0 20px 15px 1px rgba(70, 70, 70, 0.3);
+
+    color:ivory;
+
+    /* background: rgb(161, 194, 228); */
+
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.eye {/* глаз - один */
+    display: flex;
+    width: 10px;
+    height: 10px;
+
+    margin: 0 5px 0 5px;
+    border-bottom: 1px solid rgb(110, 110, 110);
+    border-radius: 100%;
+
+    background: rgb(255, 255, 255);
+}
+.eye_hover {/* стиль с анимацией моргания */
+    animation: eyeClose ease-in-out 1s infinite;
+}
+
+.button_add_circle {/* Кнопка "Добавить круг" */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+
+    margin-right: 25px;
+    /* padding: 20px; */
+
+    border-radius: 100%;
+
+    cursor: pointer;
+
+    color:ivory;
+    font-weight: bold;
+    font-size: 4.5em;
+
+    background: rgb(133, 236, 138);
+
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.button_add_circle:hover {
+    transform: scale(1.1);
+}
+.button_remove_circle {/* Кнопка "Добавить круг" */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+
+    margin-right: 25px;
+    /* padding: 20px; */
+
+    border-radius: 100%;
+
+    cursor: pointer;
+
+    color:ivory;
+    font-weight: bold;
+    font-size: 4.5em;
+
+    background: rgb(240, 85, 47);
+
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.button_remove_circle:hover {
+    transform: scale(1.1);
+}
+
+.button_start_game {/* Кнопка СТАРТ */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    
+    margin-left: 25px;
+    /* padding: 20px; */
+
+    border-radius: 100%;
+
+    cursor: pointer;
+
+    color:ivory;
+    font-weight: bold;
+    font-size: 1.1em;
+
+    background: rgb(228, 214, 19);
+
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+.button_start_game:hover {
+    transform: scale(1.1);
+}
+
+@keyframes eyeClose {/*Анимация моргания*/
+	0% {
+		height: 10px;
+	}
+    30% {
+		height: 10px;
+	}
+	40% {
+		height: 1px;
+	}
+	50% {
+		height: 10px;
+	}
+    100% {
+		height: 10px;
+	}
+}
+
+@keyframes circleScale {/*Анимация увеличения круга*/
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.1);
+	}
+    100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes circleWiggle {/*Анимация покачивания круга*/
+	0% {
+		transform: rotate(0deg) translate(0px, 0px);
+	}
+    25% {
+		transform: rotate(17deg) translate(10px, -3px);
+	}
+	50% {
+		transform: rotate(0deg) translate(0px, 0px);
+	}
+	75% {
+		transform: rotate(-17deg) translate(-10px, -3px);
+	}
+    100% {
+		transform: rotate(0deg) translate(0px, 0px);
+	}
+}
+
+@keyframes circleAddOnPlace {/*Анимация появления круга на поле*/
+	0% {
+		transform: scale(0.3);
+	}
+    80% {
+		transform: scale(1.1);
+	}
+    90% {
+		transform: scale(0.9);
+	}
+    100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes circleStay {/*Анимация состояния покоя круга*/
+	0% {
+        transform: translateY(0px);
+		height: 100px;
+	}
+    50% {
+        transform: translateY(4px);
+        height: 90px;
+	}
+    100% {
+        transform: translateY(0px);
+        height: 100px;
+	}
+}
+
+@keyframes circleWiggleLR {/*Анимация круга сжатие с покачиванием*/
+	0% {
+        transform: translateY(0px) rotate(0deg);
+		height: 100px;
+	}
+    25% {
+        transform: translate(5px,6px) rotate(5deg);
+        height: 90px;
+	}
+    50% {
+        transform: translate(0px,-6px) rotate(0deg);
+        height: 110px;
+	}
+    75% {
+        transform: translate(-5px,6px) rotate(-5deg);
+        height: 90px;
+	}
+    100% {
+        transform: translateY(0px) rotate(0deg);
+        height: 100px;
+	}
+}
+
+@keyframes circleWiggleAmorph {/*Анимация круга Аморфное изменение*/
+	0% {
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+	}
+    25% {
+        border-radius: 50% 60% 50% 50% / 60% 70% 40% 40%;
+        height: 125px;
+        transform: translateY(-13px)
+	}
+    50% {
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+	}
+    75% {
+        border-radius: 50% 70% 50% 50% / 60% 50% 40% 40%;
+	}
+    100% {
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+	}
+}
+
+@keyframes circleMinAmorph {/*Анимация круга сплющивание изменение*/
+	0% {
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        width: 100px;
+        height: 100px;
+        transform: translateY(0px);
+	}
+    10% {
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        width: 120px;
+        height: 50px;
+        transform: translateY(20px);
+	}
+    25% {
+        border-radius: 50% 60% 50% 50% / 60% 70% 40% 40%;
+        width: 120px;
+        height: 50px;
+        transform: translateY(20px);
+	}
+    50% {
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        width: 120px;
+        height: 50px;
+        transform: translateY(20px);
+	}
+    75% {
+        border-radius: 50% 70% 50% 50% / 60% 50% 40% 40%;
+        width: 120px;
+        height: 50px;
+        transform: translateY(20px);
+	}
+    100% {
+        border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        width: 100px;
+        height: 100px;
+        transform: translateY(0px);
+	}
+}
+
+@keyframes successGetColorCircle {/*Анимация для круга с основного поля в случае успеха совпадения цветов*/
+	0% {
+		transform: scale(1);
+	}
+    80% {
+		transform: scale(1.5);
+	}
+    90% {
+		transform: scale(0.9);
+	}
+    100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes successGetColorCircleOnTop {/*Анимация для круга из шапки поля в случае успеха совпадения цветов*/
+	0% {
+		transform: translateY(0px);
+	}
+    20% {
+		transform: translateY(20px);
+	}
+    100% {
+		transform: translateY(-500px);
+	}
+}
+
+@keyframes circleWrongEyes {/*Анимация машет головой. ГЛАЗА*/
+	0% {
+        transform: translateX(0px);
+        height: 2px;
+	}
+    30% {
+        transform: translateX(-30px);
+        height: 2px;
+	}
+    50% {
+        transform: translateX(0px);
+        height: 3px;
+	}
+    65% {
+        transform: translateX(30px);
+        height: 2px;
+	}
+    100% {
+        transform: translateX(0px);
+        height: 2px;
+	}
+}
+
+@keyframes circleSuccessEyes {/*Анимация кивает головой. ГЛАЗА*/
+	0% {
+        transform: translateY(0px);
+        height: 4px;
+	}
+    30% {
+        transform: translateY(-30px);
+        height: 4px;
+	}
+    50% {
+        transform: translateY(0px);
+        height: 4px;
+	}
+    65% {
+        transform: translateY(30px);
+        height: 4px;
+	}
+    100% {
+        transform: translateY(0px);
+        height: 4px;
+	}
+}
+
+@keyframes circleBig {/*Анимация увеличения*/
+	0% {
+        transform: scale(1);
+	}
+    30% {
+        transform: scale(1.1);
+	}
+    50% {
+        transform: scale(1.1);
+	}
+    65% {
+        transform: scale(1.1);
+	}
+    100% {
+        transform: scale(1);
+	}
+}

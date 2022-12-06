@@ -1,0 +1,41 @@
+@media (orientation: landscape) {
+    .wrapper {
+        flex-direction: row;
+    }
+    .place_from_top_menu {
+        flex-direction: column;
+        width: 15%;
+        height: 100%;
+    }
+    .button_add_circle, .button_remove_circle, .button_start_game {
+        margin: 10px 0;
+    }
+    .circle_main {/*Сюда вставляются круги(для каждого отдельного круга). Нужно для жёсткой фиксации положения*/
+        width: 80px;
+        height: 80px;
+
+        margin: 0 5px;
+    
+        /* background: rgb(78, 93, 109); */
+    }
+}
+@media screen and (max-width: 420px ) and (max-height: 920px) {
+    .circle_main {/*Сюда вставляются круги(для каждого отдельного круга). Нужно для жёсткой фиксации положения*/
+        width: 80px;
+        height: 80px;
+
+        margin: 0 5px;
+    
+        /* background: rgb(78, 93, 109); */
+    }
+}
+@media screen and (max-width: 420px ) and (max-height: 920px) and (orientation: landscape) {
+    .circle_main {/*Сюда вставляются круги(для каждого отдельного круга). Нужно для жёсткой фиксации положения*/
+        width: 60px;
+        height: 60px;
+
+        margin: 0 5px;
+    
+        /* background: rgb(78, 93, 109); */
+    }
+}
